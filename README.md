@@ -1,1 +1,3 @@
-# ms_sql_demo
+# Bill_split
+Divide the expense between friends
+

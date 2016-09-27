@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
       total_equal_part = (total_spent/3)
       
-      hash_for_money = { amar:  total_equal_part - @amar_total_spent, akbar: total_equal_part - @akbar_total_spent, anthony:  total_equal_part - @anthony_total_spent}
+      hash_for_money = { amar:   @amar_total_spent - total_equal_part, akbar: @akbar_total_spent - total_equal_part, anthony:  @anthony_total_spent - total_equal_part}
       arr = hash_for_money.sort_by { |k, v| -v }.reverse
       
       arr.each_with_index do |obj, index|

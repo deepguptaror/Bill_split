@@ -5,19 +5,27 @@
 <br>
 
 <%= form_tag ('/users/new_entry'), :method => 'get' do %>
+  <%= label_tag 'Event Name : ' %>
   <%= select_tag "event_name", "<option>Breakfast</option><option>Lunch</option><option>Dinner</option>".html_safe, class: 'form_input', id: 'unique_id' %>
   <br>
-  <%= text_field_tag 'date', '' ,:placeholder => 'Enter Date', :class => "datepicker" %>
+  
+  <%= label_tag 'Event Date : ' %>
+  <%= text_field_tag 'date', '' ,:placeholder => 'Enter Date', :class => "datepicker", :id => 'date_field', "data-provide" => 'datepicker' %>
   <br>
-
+  <%= label_tag 'Amar Contribution : ' %>
   <%= check_box_tag 'Amar' %>
   <%= text_field_tag 'amar_contribution', '' ,:placeholder => 'Enter Amar amount' %>
-  <br>  
+  <br>
+
+  <%= label_tag 'Akbar Contribution : ' %>
   <%= check_box_tag 'Akbar' %>
   <%= text_field_tag 'akbar_contribution', '',:placeholder => 'Enter Akbar amount' %>
   <br>
+
+  <%= label_tag 'Anthony Contribution : ' %>
   <%= check_box_tag 'Anthony' %>
   <%= text_field_tag 'anthony_contribution', '',:placeholder => 'Enter Anthony amount' %>
+  <br>
   <br>
   <%= submit_tag 'Save Data'%>
   <br>
@@ -68,3 +76,11 @@
 <%= link_to 'New User', new_user_path %>
 <%= link_to 'Sign Out', destroy_admin_session_path, :method => 'delete' %>
 <br>
+
+<script>
+jQuery(document).ready(function($) {
+    // here the $ function is jQuery's because it's an argument
+    // to the ready handler
+    $('#date_field').datepicker();
+  });
+</script>

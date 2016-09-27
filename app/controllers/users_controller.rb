@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   end
 
   def new_entry
-    debugger
     @users = User.all
     contribution_hash = Hash.new
     if params[:Amar].present?

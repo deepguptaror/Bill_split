@@ -10,11 +10,18 @@
 #   timeout: 5000
 
  development:
-   adapter: sqlserver
-   dataserver: DATA-PROD\SQL2012
-   database: testrvd
-   username: testrvd
-   password: Chetu@123
+  adapter: postgresql
+  encoding: unicode
+  database: myapp_development
+  pool: 5
+  username: jobon
+  password: 
+#development:
+   #adapter: sqlserver
+   #dataserver: DATA-PROD\SQL2012
+   #database: testrvd
+   #username: testrvd
+   #password: Chetu@123
 
    # mode: odbc
 

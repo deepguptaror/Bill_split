@@ -1,29 +1,70 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Users</h1>
+<h1>New Entry</h1>
+
+<br>
+
+<%= form_tag ('/users/new_entry'), :method => 'get' do %>
+  <%= select_tag "event_name", "<option>Breakfast</option><option>Lunch</option><option>Dinner</option>".html_safe, class: 'form_input', id: 'unique_id' %>
+  <br>
+  <%= text_field_tag 'date', '' ,:placeholder => 'Enter Date', :class => "datepicker" %>
+  <br>
+
+  <%= check_box_tag 'Amar' %>
+  <%= text_field_tag 'amar_contribution', '' ,:placeholder => 'Enter Amar amount' %>
+  <br>  
+  <%= check_box_tag 'Akbar' %>
+  <%= text_field_tag 'akbar_contribution', '',:placeholder => 'Enter Akbar amount' %>
+  <br>
+  <%= check_box_tag 'Anthony' %>
+  <%= text_field_tag 'anthony_contribution', '',:placeholder => 'Enter Anthony amount' %>
+  <br>
+  <%= submit_tag 'Save Data'%>
+  <br>
+
+<% end %>
+
+<br>
+<h1> Total Spent And Bill Spilliting </h1>
+<%= "Amar Total Spent : #{@amar_total_spent}" %>
+<br>
+<%= "Akbar Total Spent : #{@akbar_total_spent}" %>
+<br>
+<%= "Anthony Total Spent : #{@anthony_total_spent}"%>
+<br>
+<% @settlement_array.each do |set_ar| %>
+  <%= set_ar %>
+  <br>
+<% end %>
+
+ <h1>Previous Bills</h1>
 
 <table>
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th colspan="3"></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Amar Spent</th>
+      <th>Akabr spent</th>
+      <th>Anthony spent</th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user.event_date.try(:strftime, '%m/%d/%Y') %></td>
+        <td><%= user.location %></td>
+        <td><%= user.event_money_spent["amar"].to_i %></td>
+        <td><%= user.event_money_spent["akbar"].to_i %></td>
+        <td><%= user.event_money_spent["anthony"].to_i %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+ 
 <br>
 
 <%= link_to 'New User', new_user_path %>
+<%= link_to 'Sign Out', destroy_admin_session_path, :method => 'delete' %>
+<br>
